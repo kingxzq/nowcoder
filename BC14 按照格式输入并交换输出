@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main() {
+    int a=0;
+    int b=0;
+    char i,j,k,l,m;
+    scanf("%c%c%d%c%c%c%d",&i,&j,&a,&k,&l,&m,&b);
+    printf("a=%d,b=%d",b,a);
+    return 0;
+}
