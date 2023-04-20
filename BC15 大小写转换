@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    char i='0';
+    while(scanf("%c",&i)==1) 
+    {
+        printf("%c\n",(int)i+32); 
+        getchar();
+    } 
+         
+    return 0;
+}
