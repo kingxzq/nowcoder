@@ -1,0 +1,8 @@
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    scanf("%x %o", &a, &b);//分别以十六进制和八进制读入a b
+    printf("%d\n", a+b);//通过格式输出控制，直接输出a+b即可
+    return 0;
+}
