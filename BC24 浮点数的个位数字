@@ -1,0 +1,9 @@
+#include<stdio.h>
+int main(void)
+{
+    float num;
+    scanf("%f",&num);
+    int count=(int)num;
+    printf("%d",count%10);
+    return 0;
+}
