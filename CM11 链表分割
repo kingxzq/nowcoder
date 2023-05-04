@@ -1,0 +1,31 @@
+class Partition {
+public:
+    ListNode* partition(ListNode* pHead, int x) {
+        struct ListNode* lesstail=(struct ListNode*)malloc(sizeof(struct ListNode));
+        struct ListNode* moretail=(struct ListNode*)malloc(sizeof(struct ListNode));
+        struct ListNode* less=lesstail;
+        struct ListNode* more=moretail;
+        struct ListNode* cur=pHead;
+        while(cur)
+        {
+            if(cur->val<x)
+            {
+                less->next=cur;
+                less=less->next;
+                cur=cur->next;
+            }
+            else 
+            {
+                more->next=cur;
+                more=more->next;
+                cur=cur->next;
+            }
+        }
+        more->next=NULL;
+        less->next=moretail->next;
+        pHead=lesstail->next;
+        free(lesstail);
+        free(moretail);
+        return pHead;
+    }
+};
