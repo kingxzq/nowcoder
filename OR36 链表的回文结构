@@ -1,0 +1,32 @@
+class PalindromeList {
+public:
+    bool chkPalindrome(ListNode* A) 
+    {
+        struct ListNode*slow=A;
+        struct ListNode*fast=A;
+        while(fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next;
+        }
+        struct ListNode*change=NULL;
+        struct ListNode*head=slow;
+        while(head)
+        {
+            struct ListNode*next=slow->next;
+            head->next=change;
+            change=head;//重新置头
+            head=next;
+        }
+        while(slow)
+        {
+            if(A->val!=change->val)
+            {
+                return false;
+            }
+            slow=slow->next;
+            change=change->next;
+        }
+        return true;
+    }
+};
