@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main() {
+    int x,n;
+    scanf("%d %d",&x,&n);
+    int ret=(n%7+x)%7;
+    if(ret==0)
+        ret=7;
+    printf("%d",ret);
+    return 0;
+}
