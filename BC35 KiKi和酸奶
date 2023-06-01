@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    int n,h,m;
+    while(scanf("%d%d%d",&n,&h,&m)!=EOF)
+    {
+        if(m%h==0)
+                printf("%d",n-(m/h));
+        else
+                printf("%d",n-(m/h+1));
+    }
+}
