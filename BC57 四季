@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int a;
+    scanf("%d",&a);
+    int i=a%100;
+    if(i>=3&&i<=5)
+        printf("spring");
+    else if(i>=6&&i<=8)
+        printf("summer");
+    else if(i>=9&&i<=11)
+        printf("autumn");
+    else
+        printf("winter");
+    return 0;
+}
