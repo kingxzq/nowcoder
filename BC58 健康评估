@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+ 
+
+int main() {
+
+    int a;
+
+    double b,c;
+
+    scanf("%d %lf", &a, &b);
+
+    c=a/(b*b);
+
+    if(c>=18.5&&c<=23.9)
+
+        printf("Normal");
+
+    else
+
+        printf("Abnormal");
+
+    return 0;
+
+}
