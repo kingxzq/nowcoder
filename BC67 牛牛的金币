@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, c, d, e, f;
+    scanf("%d%d",&a,&b);
+    scanf("%d%d",&c,&d);
+    if((e=c-a)||(f=d-b))
+    {
+        if(e)
+        {
+                if(e==1)
+                        printf("r");
+                else
+                        printf("l");
+        }
+        else
+        {
+                if(f==1)
+                        printf("u");
+                else
+                        printf("d");
+        }
+    }
+    return 0;
+}
