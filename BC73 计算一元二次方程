@@ -1,0 +1,45 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+    double a, b, c;
+    while(scanf("%lf%lf%lf",&a,&b,&c)!=EOF)
+    {
+        if(a==0)
+        {
+                cout << "Not quadratic equation" << endl;
+        }
+        else
+        {
+                double x= pow(b,2)-4*a*c;
+                if(x==0)
+                {
+                        double ret=-b/(2*a);
+                        if(ret==-0)
+                                printf("x1=x2=0.00\n");
+                        else
+                                printf("x1=x2=%.2lf\n",ret);
+                }
+                else if(x>0)
+                {
+                        double ret1=(-b-sqrt(x))/(2*a);
+                        double ret2=(-b+sqrt(x))/(2*a);
+                        if(ret1<ret2)
+                                printf("x1=%.2lf;x2=%.2lf\n",ret1,ret2);
+                        else
+                                printf("x1=%.2lf;x2=%.2lf\n",ret2,ret1);
+                }
+                else
+                {
+                        double ret1=(-b/(2*a));
+                        double ret2=sqrt(-x)/(2*a);
+                        if(-ret2<=ret2)
+                                printf("x1=%.2lf-%.2lfi;x2=%.2lf+%.2lfi\n",ret1,ret2,ret1,ret2);
+                        else
+                                printf("x1=%.2lf+%.2lfi;x2=%.2lf-%.2lfi\n",ret1,ret2,ret1,ret2);
+                }
+        }
+    }
+    return 0;
+}
