@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    while (cin >> a >> b>> c) { // 注意 while 处理多个 case
+        if(a+b+c>=180)
+                cout << "NO" << endl;
+        else
+                cout << "YES" << endl;
+    }
+}
