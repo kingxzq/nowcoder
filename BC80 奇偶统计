@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int a;
+    scanf("%d",&a);
+    int b=a/2;
+    if(a%2==0)
+    {
+        printf("%d %d",b,b);
+    }
+    else
+    {
+        printf("%d %d",b+1,b);
+    }
+    return 0;
+}
