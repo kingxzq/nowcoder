@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    double n,i=0.0;
+    scanf("%lf",&n);
+    while(n)
+    {
+        i+=1/n;
+        n--;
+    }
+    printf("%.6lf",i);
+    return 0;
+}
