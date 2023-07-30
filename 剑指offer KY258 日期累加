@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+class Date
+{
+public:
+    int GetMonthDay(int year, int month)
+	{
+		static int days1[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        static int days2[13] = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		int day = days1[month];
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+		{
+			day = days2[month];
+		}
+
+		return day;
+	}
+    void ret(int days)
+    {
+        _day+=days;
+        while(_day>GetMonthDay(_year, _month))
+        {
+            _day-=GetMonthDay(_year, _month);
+            _month++;
+            if(_month==13)
+            {
+                _year++;
+                _month=1;
+            }
+                
+        }
+        printf("%04d-%02d-%02d\n",_year,_month,_day);
+    }
+//private:
+	int _year;
+	int _month;
+	int _day;
+};
+int main() {
+    int n;
+    cin>>n;
+    Date tmp;
+    int days;
+    while(n--)
+    {
+        cin>>tmp._year>>tmp._month>>tmp._day>>days;
+        tmp.ret(days);
+    }
+}
