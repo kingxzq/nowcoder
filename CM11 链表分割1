@@ -1,0 +1,39 @@
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};*/
+class Partition {
+public:
+    ListNode* partition(ListNode* pHead, int x) {
+        struct ListNode *lhead,*ltail,*hhead,*htail;
+        lhead=ltail=( struct ListNode*)malloc(sizeof(struct ListNode));
+        hhead=htail=( struct ListNode*)malloc(sizeof(struct ListNode));
+
+        struct ListNode *cur = pHead;
+        while(cur)
+        {
+            if(cur->val<x)
+            {
+                ltail->next=cur;
+                ltail=ltail->next;
+            }
+            else
+            {
+                htail->next=cur;
+                htail=htail->next;
+            }
+            cur=cur->next;
+        }
+
+        htail->next=nullptr;
+        ltail->next=hhead->next;
+
+        struct ListNode* head=lhead->next;
+        free(lhead);
+        free(hhead);
+
+        return head;
+    }
+};
