@@ -1,0 +1,15 @@
+#include <stdlib.h>
+int* printNumbers(int n, int* returnSize ) {
+    int ret = 1;
+    for (int i = 0; i < n; i++) {
+        ret *= 10;
+    }
+
+    int* returnArray = (int*)malloc(sizeof(int) * (ret - 1));
+    for (int i = 1; i < ret; i++) {
+        returnArray[i - 1] = i;
+    }
+
+    *returnSize = ret - 1;
+    return returnArray;
+}
