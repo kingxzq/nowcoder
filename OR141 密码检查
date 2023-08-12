@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    for (int t = 0; t < n; t++) {
+        char code[101];
+        scanf("%s", code);
+
+        int countA = 0, counta = 0, count0 = 0;
+        int sz = strlen(code);
+
+        if (sz < 8) {
+            printf("NO\n");
+            continue;
+        }
+
+        if (code[0] >= '0' && code[0] <= '9') {
+            printf("NO\n");
+            continue;
+        }
+
+        for (int i = 0; i < sz; i++) {
+            if (!isalnum(code[i])) { //出现非字母、数字
+                printf("NO\n");
+                continue;
+            } else {
+                if (code[i] >= '0' && code[i] <= '9')
+                    count0++;
+                else if (code[i] >= 'a' && code[i] <= 'z')
+                    counta++;
+                else if (code[i] >= 'A' && code[i] <= 'Z')
+                    countA++;
+            }
+
+        }
+        if ((count0 + countA + counta) != sz) {
+            printf("NO\n");
+            continue;
+        }
+        if ((count0  && counta ) || (count0 && countA ) || (countA  && counta)) {
+            printf("YES\n");
+        } else {
+            printf("NO\n");
+        }
+    }
+
+    return 0;
+}
