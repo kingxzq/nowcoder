@@ -9,3 +9,36 @@ int GetNumberOfK(int* nums, int numsLen, int k ) {
     }
     return ret;
 }
+
+
+
+class Solution {
+public:    
+	int bSearch(const vector<int> &vec, double k)
+	{
+		int beg = 0;
+		int end = vec.size() - 1;
+		while (beg <= end)
+		{
+			int mid = (beg + end);
+			
+			if (k < vec[mid])
+			{
+				end = mid - 1;
+			}
+			else
+			{
+				beg = mid + 1;
+			}
+		}
+		
+		return beg;
+	}
+	
+    int GetNumberOfK(vector<int> vec ,int k) {
+        int start = bSearch(vec, k - 0.5);
+        int end = bSearch(vec, k + 0.5);
+        cout << start << "," << end << endl;
+		return end - start;
+    }
+};
