@@ -1,0 +1,18 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+using namespace std;
+class str{
+public:
+    void put()
+    {
+        string s;
+        getline(cin,s);
+        sort(s.begin(),s.end());
+        cout << s << endl;
+    }
+    
+};
+int main() {
+    str().put();
+}
