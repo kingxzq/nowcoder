@@ -13,3 +13,24 @@ int main() {
     }
     return 0;
 }
+
+
+
+#include<stdio.h>
+#define MAX_TABLE_SIZE 128
+
+int main(){
+    char hash[MAX_TABLE_SIZE] = {-1};
+    char c = 0;
+    int num = 0;
+    while(~scanf("%c",&c)){
+        if(c == '\n') break;
+        if(hash[(int)c] != c){
+            hash[(int)c] = c;
+            num++;
+        }
+    }
+    printf("%d\n",num);
+}
+
+
