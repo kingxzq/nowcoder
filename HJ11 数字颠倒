@@ -1,0 +1,20 @@
+#include <iostream>
+#include <limits>
+#include <string>
+using namespace std;
+class num{
+    public:
+        int n;
+        void print(int& n)
+        {
+            string s;
+            s=to_string(n);
+            for (auto it = s.rbegin(); it != s.rend(); ++it)
+                cout << *it;           
+        }
+};
+int main() {
+    int n=0;
+    cin>>n;
+    num().print(n);
+}
