@@ -1,0 +1,22 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+
+int main() {
+    int month;
+    cin>>month;
+    
+    int rabbit_1 = 1;
+    int rabbit_2 = 0;
+    int rabbit_3 = 0;
+ 
+    for (int i = 1; i<month; ++i)
+    {
+        rabbit_3 = rabbit_3 + rabbit_2;
+        rabbit_2 = rabbit_1;
+        rabbit_1 = rabbit_3;
+    }
+ 
+    cout<<rabbit_1+rabbit_2+rabbit_3;
+    return 0;
+}
