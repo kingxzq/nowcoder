@@ -1,0 +1,22 @@
+# include<iostream>
+using namespace std;
+int main()
+{
+	//cout << "请输入班级人数" << endl;
+	int n, a, b, c, s;
+	int d = 0;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		//cout << "请输入三科分数" << endl;
+		cin >> a;
+		cin >> b;
+		cin >> c;
+		s = (a + b + c) / 3;
+		if (s < 60)
+			++d;
+		else continue;
+	}
+	cout <<d;
+	return 0;
+}
