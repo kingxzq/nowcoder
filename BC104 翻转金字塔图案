@@ -1,0 +1,30 @@
+//反转金字塔图案
+#include <stdio.h>
+
+int main()
+{
+	int n = 0;
+	int i = 0;
+	
+	while(scanf("%d", &n) != EOF)//多组输入
+	{
+		int count = 0;
+		for (i = n; i >= 1; i--)//打印n行
+		{
+			count++;
+			int k = 0;
+            //打印空格
+			for (k = 1; k < count; k++)
+			{
+				printf(" ");
+			}
+			int j = 0;
+			for (j = i; j >= 1; j--)
+			{
+				printf("* ");//每行打印字符
+			}
+			printf("\n");
+		}
+	}
+	return 0;
+}
