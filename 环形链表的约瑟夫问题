@@ -1,0 +1,33 @@
+#include <iostream>
+#include <list>
+using namespace std;
+int life(int n,int m)
+{
+    list<int> circle;
+    for(int i=1;i<=n;++i)
+        circle.push_back(i);
+
+    auto cur=circle.begin();
+    while(n>1)
+    {
+        for(int i=0;i<m-1;++i)
+        {
+            ++cur;
+            if(cur==circle.end())
+                cur=circle.begin();
+        }
+        cur=circle.erase(cur);
+
+        if(cur==circle.end())
+            cur=circle.begin();
+        --n;    
+    }
+    return circle.front();
+}
+
+int main() {
+    int a, b;
+    while (cin >> a >> b) { 
+        cout << life(a,b) << endl;
+    }
+}
