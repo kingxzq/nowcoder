@@ -1,0 +1,23 @@
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param root TreeNode类 
+     * @return int整型
+     */
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root==nullptr)
+            return 0;
+        
+        int sum=0;
+        
+        if(root->left!=nullptr&&root->left->left==nullptr&&root->left->right==nullptr)
+            sum+=root->left->val;
+        sum+=sumOfLeftLeaves(root->left);
+        sum+=sumOfLeftLeaves(root->right);
+
+        return sum;
+    }
+};
