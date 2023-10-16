@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+    int i = 0;
+    int j = 0;
+    int a = 0;
+    int n = 0;
+    while(scanf("%d",&n)!=EOF)
+    {
+        for(i=0;i<n;i++)   //打印上半部分
+        {
+            for(j=0;j<=n-i;j++)
+            {
+                printf("* ");
+            }printf("\n");
+        }
+        if(i+1==n+1)      //打印中间部分
+        {
+            printf("*\n");
+        }
+        for(i=0;i<n;i++)  //打印下半部分
+        {
+            for(j=0;j<=i+1;j++)
+            {
+                printf("* ");
+            }printf("\n");
+        }
+    }
+    return 0;
+}
