@@ -1,0 +1,35 @@
+#include<stdio.h>
+int main()
+{
+    int num;
+    int i,j,k;
+    while(scanf("%d",&num)!=EOF)
+        //将火箭图案从中间分开 上部分一个大循环 下部分一个循环
+    {
+        for(i=0;i<=num;i++)//上部分循环从此开始  此处确定了上部分循环的行数
+        {
+            for(j=0;j<num-i;j++)//此处为先开始打印空格
+            {
+                printf("  ");
+            }
+            for(k=0;k<=i;k++)//此处打印图案*
+            {
+                printf("*");
+            }
+            printf("\n");//至此一次大循环完成 打印了一行的图形 在此换行
+        }
+        for(i=0;i<num;i++)
+        {
+            for(j=0;j<=i;j++)
+            {
+                printf("  ");
+            }
+            for(k=0;k<num-i;k++)
+            {
+                printf("*");
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
