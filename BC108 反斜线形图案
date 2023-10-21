@@ -1,0 +1,11 @@
+int main(){
+    int i;
+    while(~scanf(" %d",&i)){//多组输入
+    for(int j=0;j<i;j++){//行
+        for(int k=0;k<j;k++)//每一行需要输入的空格数
+            printf(" ");
+        printf("*\n");//最后输入*，换行。
+    }
+    }
+    return 0;
+}
