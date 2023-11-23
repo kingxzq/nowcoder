@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main(void)
+{
+	int n;
+	cin>>n;
+	int score[n];
+	for(int s=0;s<n;s++)
+	cin>>score[s];
+	//排序总轮数=元素个数-1 
+	for(int i=0;i<n-1;i++)
+	{
+		//每次对比次数=元素个数-当前轮数-1 
+		for(int j=0;j<n-i-1;j++)
+		if(score[j]<score[j+1])
+		{
+			int temp=score[j];
+			score[j]=score[j+1];
+			score[j+1]=temp;
+		} 
+	}
+	for(int k=0;k<5;k++)
+	cout<<score[k]<<" ";
+}
