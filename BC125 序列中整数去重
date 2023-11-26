@@ -1,0 +1,31 @@
+#include <stdio.h>
+int main()
+{
+    int n; 
+    //第一行包含一个正整数n（1 ≤ n ≤ 1000）
+    int arr1[1000]={0}; //作为输入数组存储信息
+    int arr2[1000]={0}; //作为输出数组用于筛选去重后的数字
+    scanf("%d",&n);
+    int num=0;//用于统计去重后元素的个数
+    for(int i=0;i<n;i++){
+        int sum=0;//用于表示该元素是否为重复元素
+        scanf("%d ",&arr1[i]);//输入数组①
+        for(int j=0;j<i;j++){
+            if(arr2[j]==arr1[i]){ //检测输出数组②中是否已经存在此数
+                sum=1;
+                break;
+            }
+        }
+        //sum=0说明if循环未进入则输出数组中无此数
+        //将满足的值输入二数组
+        if(sum==0)
+        {   //说明此时为非重复元素
+            arr2[num]=arr1[i];//将该元素存储到arr2输出数组中
+                 num++;//个数++
+        }
+    }
+    for(int i=0;i<num;i++){ //输出去重后的数组
+        printf("%d ",arr2[i]);
+    }
+    return 0;
+}
