@@ -1,0 +1,15 @@
+#include<stdio.h>
+int main() { //桶排
+    int arr[100] = {0}; //100个桶初始化为0
+    int n = 0;
+    int temp = 0; //桶的编号
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &temp); //获得桶编号
+        arr[temp]++;//temp对应数的桶里，出现就自增，即为出现次数
+    }
+    int index = 0;
+    scanf("%d", &index);
+    printf("%d", arr[index]);
+    return 0;
+}
