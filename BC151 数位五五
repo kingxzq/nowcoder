@@ -1,0 +1,14 @@
+#include<stdio.h>
+int a,b,c;
+int main(){
+    scanf("%d%d",&a,&b);
+    for(int i=a;i<=b;i++){
+        int tmp=i,s=0;
+        while(tmp){
+            s+=tmp%10;
+            tmp/=10;
+        }
+        if(s%5==0) c++;
+    }
+    printf("%d",c);
+}
