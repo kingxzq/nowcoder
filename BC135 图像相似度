@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main()
+{
+    int m = 0; //表示行数
+    int n = 0; //表示列数
+    int arr1[100][100] = { 0 };
+    int arr2[100][100] = { 0 };
+    //输入
+    scanf("%d %d", &m, &n);
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d ", &arr1[i][j]);
+        }
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d ", &arr2[i][j]);
+        }
+    }
+    int cnt = 0; //表示相同的个数
+    //比较
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (arr1[i][j] == arr2[i][j])
+            {
+                cnt++;
+            }
+        }
+    }
+    //输出
+    printf("%.2f\n", 100.0 * cnt / (m * n));
+
+    return 0;
+}
