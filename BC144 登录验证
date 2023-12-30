@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main()
+{
+    char a[100];
+    char b[100];
+    int c=0,d=0;
+    scanf("%s",a);
+    scanf("%s",b);
+    if(a[0]=='a'&&a[1]=='d'&&a[2]=='m'&&a[3]=='i'&&a[4]=='n')
+    {
+        c=1;
+    }
+    if(b[0]=='a'&&b[1]=='d'&&b[2]=='m'&&b[3]=='i'&&b[4]=='n')
+    {
+        d=1;
+    }
+    if(c==1&&d==1)printf("Login Success!\n");
+    else printf("Login Fail!\n");
+}
