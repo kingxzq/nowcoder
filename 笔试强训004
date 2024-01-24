@@ -1,0 +1,62 @@
+//计算糖果
+#include <iostream>
+using namespace std;
+
+int main() {
+    int one, two, three, four, A, B, C;
+    cin >> one;
+    cin >> two;
+    cin >> three;
+    cin >> four;
+
+    A = (2 * one + two + four) / 2;
+    B = A - one;
+    C = B - two;
+    if (A - B == one && B - C == two && A + B == three && B + C == four)
+        cout << A << ' ' << B << ' ' << C << endl;
+    else
+        cout << "No" << endl;
+}
+
+
+//进制转换
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main() {
+    int m, n, flag = 1;
+    cin >> m >> n;
+    if (m == 0)
+        cout << 0 << endl;
+    else
+    {
+        if (m < 0) {
+            m = -m;
+            flag = 0;
+        }
+        stack<char> ret;
+        while (m > 0) {
+            int r = m % n;
+            char dight;
+
+            if (r < 10)
+                dight = '0' + r;
+            else
+                dight = 'A' + (r - 10);
+
+            ret.push(dight);
+            m /= n;
+        }
+
+        string s;
+        if (flag == 0) s += '-';
+        while (!ret.empty()) {
+            s += ret.top();
+            ret.pop();
+        }
+        cout << s << endl;
+    }
+}
+
