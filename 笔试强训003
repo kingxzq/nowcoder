@@ -1,0 +1,62 @@
+//数组中出现次数超过一半的数字
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     *
+     * @param numbers int整型vector
+     * @return int整型
+     */
+    int MoreThanHalfNum_Solution(vector<int>& numbers) {
+        unordered_map<int, int> comp;
+        int n = numbers.size();
+        for (auto& e : numbers)
+            comp[e]++;
+        int m = 0;
+        int ret;
+        auto it = comp.begin();
+        while (it != comp.end()) {
+            if (m < it->second) {
+                m = it->second;
+                ret = it->first;
+            }
+            it++;
+        }
+        return ret;
+    }
+};
+
+//字符串中找出最长连续字串
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    string tmp;
+    string ret;
+    int count = 0, m = 0;
+
+    getline(cin, s);
+    int n = s.size();
+    for (int i = 0; i < n; i++) {
+        if (s[i] >= '0' && s[i] <= '9') {
+            tmp.push_back(s[i]);
+            count++;
+        }
+        else {
+            if (m < count) {
+                ret = tmp;
+                m = count;
+            }
+            tmp.clear();
+            count = 0;
+        }
+    }
+    if (m < count) {
+        ret = tmp;
+        m = count;
+    }
+    cout << ret << endl;
+}
