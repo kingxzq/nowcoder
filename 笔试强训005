@@ -1,0 +1,54 @@
+//连续最大和
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> t;
+    while (n) {
+        int num;
+        cin >> num;
+        t.push_back(num);
+        n--;
+    }
+
+    int cur = 0, maxN = t[0];
+
+    for (auto x : t) {
+        cur = max(cur + x, x);
+        maxN = max(maxN, cur);
+    }
+
+    cout << maxN << endl;
+}
+
+
+//统计回文
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+bool isPr(string& s) {
+    string t(s.begin(), s.end());
+    reverse(t.begin(), t.end());
+    return t == s;
+}
+
+int main() {
+    string s1, s2;
+    getline(cin, s1);
+    getline(cin, s2);
+
+    int count = 0;
+    int n = s1.size();
+    for (size_t i = 0; i <= n; ++i) {
+        string ret = s1;
+        ret.insert(i, s2);
+
+        if (isPr(ret)) count++;
+    }
+    cout << count << endl;
+}
