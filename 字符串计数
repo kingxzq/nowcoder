@@ -1,0 +1,38 @@
+# 商业转载请联系作者获得授权，非商业转载请注明出处。
+# For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source.
+# 协议(License)：署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)
+# 作者(Author)：爱学习的鱼佬
+# 链接(URL)：https://blog.kingxzq.top/52.html
+# 来源(Source)：鱼佬科技
+
+#include <iostream>
+#include <string>
+#include <vector>
+ 
+int main() {
+    std::string str;
+    while (std::cin >> str) {
+        int n = str.length();
+        std::vector<int> next(n, 0);
+        int i = 0, j = 1;
+ 
+        while (j < n) {
+            if (str[i] == str[j]) {
+                i++;
+                next[j++] = i;
+            } else {
+                if (i == 0)
+                    j++;
+                else
+                    i = next[i - 1];
+            }
+        }
+ 
+        if (next[n - 1] != 0 && n % (n - next[n - 1]) == 0)
+            std::cout << n - next[n - 1] << std::endl;
+        else
+            std::cout << n << std::endl;
+    }
+ 
+    return 0;
+}
