@@ -1,0 +1,62 @@
+//Fibonacci数列
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> fib(int n) {
+    vector<int> fi, ret;
+    fi.push_back(0);
+    fi.push_back(1);
+    int flag = 1, i = 2;
+
+    while (flag) {
+        fi.push_back(fi[i - 1] + fi[i - 2]);
+        if (fi[i] == n) {
+            return ret;
+        }
+        else if (fi[i] > n) {
+            ret.push_back(fi[i - 1]);
+            ret.push_back(fi[i]);
+            return ret;
+        }
+        i++;
+    }
+    return ret;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    if (n == 0) return 0;
+
+    vector<int> t = fib(n);
+    if (!t.size()) cout << 0 << endl;
+    else {
+        int len = min(n - t[0], t[1] - n);
+        cout << len << endl;
+    }
+    return 0;
+}
+
+
+//合法括号序列判断
+class Parenthesis {
+public:
+    bool chkParenthesis(string A, int n) {
+        if (n % 2) return false;
+        stack<char> comp;
+
+        for (int i = 0; i < n; i++) {
+            if (A[i] == '(') comp.push('(');
+            else if (A[i] == ')') {
+                if (comp.empty()) return false;
+                comp.pop();
+            }
+            else return false;
+        }
+
+        if (comp.empty()) return true;
+        else return false;
+    }
+};
