@@ -1,0 +1,67 @@
+//井字棋
+class Board {
+public:
+    bool checkWon(vector<vector<int> > board) {
+        return (board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1) ||
+            (board[1][0] == 1 && board[1][1] == 1 && board[1][2] == 1) ||
+            (board[2][0] == 1 && board[2][1] == 1 && board[2][2] == 1) ||
+            (board[0][0] == 1 && board[1][0] == 1 && board[2][0] == 1) ||
+            (board[0][1] == 1 && board[1][1] == 1 && board[2][1] == 1) ||
+            (board[0][2] == 1 && board[1][2] == 1 && board[2][2] == 1) ||
+            (board[0][0] == 1 && board[1][1] == 1 && board[2][2] == 1) ||
+            (board[0][2] == 1 && board[1][1] == 1 && board[2][0] == 1);
+    }
+};
+
+//密码强度等级
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+
+    int ret = 0, n = s.size();
+    map<char, int> comp;
+    comp['a'] = 0;
+    comp['A'] = 0;
+    comp['0'] = 0;
+    comp['o'] = 0;
+    for (int i = 0; i < n; ++i) {
+        if (s[i] >= 'a' && s[i] <= 'z') comp['a']++;
+        else if (s[i] >= 'A' && s[i] <= 'Z') comp['A']++;
+        else if (s[i] >= '0' && s[i] <= '9') comp['0']++;
+        else comp['o']++;
+    }
+
+    if (comp['o'] + comp['0'] + comp['a'] + comp['A'] <= 4) ret += 5;
+    else if (comp['o'] + comp['0'] + comp['a'] + comp['A'] <= 7) ret += 10;
+    else ret += 25;
+
+    if (comp['a'] > 0 && comp['A'] == 0) ret += 10;
+    else if (comp['a'] == 0 && comp['A'] > 0) ret += 10;
+    else if (comp['a'] > 0 && comp['A'] > 0) ret += 20;
+
+    if (comp['0'] == 1) ret += 10;
+    else if (comp['0'] > 1) ret += 20;
+
+    if (comp['o'] == 1) ret += 10;
+    else if (comp['o'] > 1) ret += 25;
+
+    if (comp['o'] > 0 && comp['0'] > 0 && comp['a'] > 0 && comp['A'] > 0) ret += 5;
+    else if (comp['o'] > 0 && comp['0'] > 0 && comp['a'] > 0 || comp['A'] > 0) ret += 3;
+    else if (comp['0'] > 0 && comp['a'] > 0 || comp['A'] > 0) ret += 2;
+
+
+    if (ret >= 90) cout << "VERY_SECURE" << endl;
+    else if (ret >= 80) cout << "SECURE" << endl;
+    else if (ret >= 70) cout << "VERY_STRONG" << endl;
+    else if (ret >= 60) cout << "STRONG" << endl;
+    else if (ret >= 50) cout << "AVERAGE" << endl;
+    else if (ret >= 25) cout << "WEAK" << endl;
+    else cout << "VERY_WEAK" << endl;
+
+    return 0;
+}
