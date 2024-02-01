@@ -1,0 +1,33 @@
+//最近公共祖先
+class LCA {
+public:
+    int getLCA(int a, int b) {
+        while (a != b) {
+            if (a > b) a /= 2;
+            else b /= 2;
+        }
+        return a;
+    }
+};
+
+//求最大连续bit数
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, m = 0, count = 0;
+    cin >> n;
+
+    while (n) {
+        while (n % 2) {
+            n >>= 1;
+            count++;
+        }
+        m = max(m, count);
+        count = 0;
+        n >>= 1;
+    }
+    cout << m << endl;
+    return 0;
+}
