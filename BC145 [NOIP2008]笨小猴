@@ -1,0 +1,49 @@
+#include <string>
+#include <cstdio> 
+#include <string.h>
+
+int main()
+{
+    char s1[100] = { '0' };
+    int  s2[100] = { 0 };
+    int maxn = 0, minn = 100;
+    scanf("%s", &s1);
+    for (unsigned int i = 0; i < strlen(s1); i++)
+    {
+        s2[s1[i] - '0'] += 1;
+    }
+    for (int i = 0; i < 100; i++)
+    {
+        if (maxn < s2[i])
+        {
+            maxn = s2[i];
+        }
+        if (s2[i] != 0 && minn > s2[i])
+        {
+            minn = s2[i];
+        }
+    }
+    int flag = 0;
+    for (int i = 2; i < maxn - minn; i++)
+    {
+        if ((maxn - minn) % i == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if ((maxn - minn == 1) || (maxn - minn) == 0)
+    {
+        flag = 1;
+    }
+    if (flag == 0)
+    {
+        printf("Lucky Word\n");
+        printf("%d", maxn - minn);
+    }
+    else
+    {
+        printf("No Answer\n");
+        printf("0");
+    }
+}
