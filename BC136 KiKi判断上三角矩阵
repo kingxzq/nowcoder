@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    int a[12][12], n, i, j, flag;
+    flag = 1;//假设三角矩阵成立 
+    cin>>n;
+    for(i = 0;i < n;i++)
+        for(j = 0;j < n;j++)
+            cin>>a[i][j];
+
+    for(i = 1;i < n;i++)
+    {
+        for(j = 0;j < i;j++)
+        {
+            if(a[i][j] != 0) flag = 0;//若三角矩阵里出现一个非0的数，则该矩阵不成立 
+        }
+    }
+    if(flag) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+}
