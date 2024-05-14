@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int main(){
+    char chess[3][3];
+    bool k=false,b=false;
+    int prok[2]={-1,-1},prob[2]={-1,-1},rk=0,ck=0,rb=0,cb=0;
+    for(int i=0;i<3;i++){
+        cin>>chess[i][0]>>chess[i][1]>>chess[i][2];
+    }
+
+    for (int row=0;row<3;row++){
+       for(int col=0;col<3;col++){
+            if(chess[row][col]=='K'){
+                if(prok[0]==-1){
+                    prok[0]=row;
+                    prok[1]=col;
+                }
+                else{
+                    rk = row-prok[0];
+                    ck = col-prok[1];
+                    if (chess[row+rk][col+ck]=='K') {k=true;break;}
+                  }
+            }
+            else if(chess[row][col]=='B'){
+                if(prob[0]==-1){
+                    prob[0]=row;
+                    prob[1]=col;
+                }
+                else {
+                    rb=row-prob[0];
+                    cb=col-prob[1];
+                    if(chess[row+rb][col+cb]=='B') {b=true;break;}
+                }
+            }
+        } 
+    }
+
+    if(k) cout<<"KiKi wins!"<<endl;
+    else if(b) cout<<"BoBo wins!"<<endl;
+    else cout<<"No winner!"<<endl;
+    return 0;
+}
