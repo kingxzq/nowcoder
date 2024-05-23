@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+int n;
+int arr[20] = {0}, arr_r[20] = {0};
+char crr[10] = {0};
+int lenght = 0;
+
+void func_crr_to_arr()
+{
+    for(lenght = 1; crr[lenght-1] != 0 ; lenght++)
+    {
+        if(crr[lenght-1] >= '0' && crr[lenght-1] <= '9')        arr[lenght] = crr[lenght-1] - '0';
+        else if(crr[lenght-1] >= 'A' && crr[lenght-1] <= 'F')   arr[lenght] = crr[lenght-1] - 'A' + 10;
+    }
+    lenght -= 1;
+}
+
+int func_arr_palindrome_judge()
+{
+    for(int i = 1; i <= lenght ; i++)
+    {
+        if(arr[i] != arr[lenght - i + 1])
+            return 0;
+    }
+    return 1;
+}
+
+void func_get_arr_reserve()
+{
+    for(int i = 1; i <= lenght ; i++)
+    {
+        arr_r[i] = arr[lenght - i + 1];
+    }
+}
+
+void func_arr_reset()
+{
+    for(int i = lenght; i > 0; i--)
+    {
+        if((arr[i] + arr_r[i]) / n != 0 )
+        {
+            arr[i - 1] ++;
+            arr[i] = arr[i] + arr_r[i] - n;
+        }
+        else
+        {
+            arr[i] = arr[i] + arr_r[i];
+        }
+    }
+    if(arr[0] != 0)
+    {
+        for(int i = lenght; i >= 0; i--)
+        {
+            arr[i + 1] = arr[i];
+        }
+        arr[0] = 0;
+        lenght ++;
+    }
+}
+
+int main()
+{
+    int step = 0;
+
+    scanf("%d", &n);
+    scanf("%s", &crr);
+    func_crr_to_arr();
+
+    while(!func_arr_palindrome_judge())
+    {
+        func_get_arr_reserve();
+        func_arr_reset();
+        step ++;
+        if(step >= 30)break;
+    }
+    if(step >= 30)printf("Impossible!");
+    else printf("STEP=%d", step);
+    return 0;
+}
