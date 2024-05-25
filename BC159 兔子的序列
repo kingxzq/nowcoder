@@ -1,0 +1,16 @@
+#include<math.h>
+int main() {
+    int n, x;
+    scanf("%d\n", &n);
+    int a, max = 0;
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a);
+        x = sqrt(a);
+        if (a == pow(x, 2)) continue;
+        else {
+            if (a > max) max = a;
+        }
+    }
+    printf("%d", max);
+    return 0;
+}
