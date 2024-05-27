@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+#define ll long long
+ //返回x的二进制中的最后一个1的值，比如100000100，返回100
+ll lowbit(ll x){
+    return x&(-x);
+}
+ 
+ 
+int main(){
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        ll n;
+        cin>>n;
+        ll res=0;
+        while(n) n-=lowbit(n),res++;
+        cout<<res<<' ';
+        ll x=1;
+        while(res--) x*=2; 
+        cout<<x-1<<endl;
+    }
+     
+    return 0;
+}
