@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    while(scanf("%d",&n)!=-1)
+    {
+        int a=1;
+        for(int i=1; i<=n; i++)
+            a*=3;			//汉诺塔原来是找规律题 n==1 3-1；n==2 3*3-1；
+        printf("%d\n",a-1);
+    }
+}
