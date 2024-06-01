@@ -1,0 +1,9 @@
+long long output(int n) {
+    return n == 1 ? n : n + output(n - 1);
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%lld", output(n));
+    return 0;
+}
