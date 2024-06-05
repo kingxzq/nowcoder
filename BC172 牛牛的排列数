@@ -1,0 +1,20 @@
+#include<stdio.h>
+int array(int n, int m)
+{
+    if(m == 1)
+    {
+        return n;
+    }
+    else
+    {
+        return n * array(n - 1, m - 1);
+    }
+}
+int main()
+{
+    int n = 0, m = 0;
+    scanf("%d %d",&n,&m);
+    int ret = array(n, m);
+    printf("%d",ret);
+    return 0;
+}
