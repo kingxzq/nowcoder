@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+char a;
+int b;
+long c;
+double d;
+cout<<sizeof(a)<<endl<<sizeof(b)<<endl<<sizeof(c)<<endl<<sizeof(d)<<endl;
+
+return 0;
+
+}
