@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    // write your code here......
+    int a,b;
+    cin>>a>>b;
+    printf("%d %d %d %d %d\n",a+b,(a>b?a-b:b-a),a*b,(a>b?a/b:b/a),(a>b?a%b:b%a));
+    return 0;
+}
