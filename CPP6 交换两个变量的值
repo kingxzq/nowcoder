@@ -1,0 +1,18 @@
+using namespace std;
+
+int main() {
+
+    int a = 0;
+    int b = 0;
+    cin >> a;
+    cin >> b;
+
+    //write your code here.......
+    a = a+b;
+    b = a-b;
+    a = a-b;
+
+    cout << a << " " << b << endl;
+    
+    return 0;
+}
