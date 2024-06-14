@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+double weight;
+double height;
+
+cin >> weight;
+cin >> height;
+
+// write your code here......
+double BMI;
+BMI = weight/(height*height);
+cout<<(BMI>24.9?"偏胖":(BMI>=20.9?"适中":(BMI>=18.5?"苗条":"偏瘦")));
+
+return 0;
+
+}
