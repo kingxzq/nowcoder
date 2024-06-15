@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   
+    int score;
+    cin >> score;
+    if(score < 0 || score > 100) //优先判断成绩是合法
+        cout << "成绩不合法" << endl;
+    else{ //对于合法的成绩再判断等级
+        switch(score / 10){ //除10取十位数
+            case 10: case 9: //90-100
+                cout << "优秀" << endl; break;
+            case 8:  //80-89
+                cout << "良" << endl;   break;
+            case 7:  //70-79
+                cout << "中" << endl;   break;
+            case 6:  //60-69
+                cout << "及格" << endl; break;
+            default: //0-59
+                cout << "差" << endl;
+        }
+    }
+	return 0;
+}
