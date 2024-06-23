@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int n;
+    cin >> n;
+
+    //i表示乘法表行数.
+    for(int i=1;i<=n;i++){
+        //j表示乘法表列数
+        for(int j=1;j<=i;j++){
+            //按对应格式输出乘法表
+            cout<<j<<" * "<<i<<" = "<<j*i<<"    ";
+        }
+        //每打印完一行，进行换行
+        cout<<endl;
+    }
+
+    return 0;
+}
