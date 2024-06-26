@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int a ;
+cin >> a;
+
+for( int i = 2; i <= a; i++){
+    if(i == a){
+        cout << "是质数" << endl;
+        break;
+    }
+    if( a % i == 0){
+        cout << "不是质数" << endl;
+        break;
+    }
+    
+}
+
+
+return 0;
+
+}
