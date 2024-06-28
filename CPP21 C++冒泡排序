@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+    int arr[6] = { 0 };
+    int len = sizeof(arr) / sizeof(int);
+    int p = len;
+    for (int i = 0; i < len; i++) {
+        cin >> arr[i];
+    }
+    
+    // write your code here......
+    for(int i=p;i>0;i--)
+    {
+        for(int j=0;j<len-1;j++)
+        {
+            if(arr[j]>arr[j+1])
+            {
+                int temp;
+                temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        p--;
+    }
+
+
+
+    for(int i=0;i<len;i++)
+    {
+        cout<<arr[i]<<' ';
+    }
+    return 0;
+}
