@@ -1,0 +1,39 @@
+class Solution {
+    public ListNode deleteDuplicates (ListNode head) {
+        if(head == null || head.next == null){ 
+            return head;    // 当空链表或者只有一个节点时直接返回。
+        }
+        ListNode ed,poc;    // ed：指向上一个非重复元素， poc：遍历整个链表
+        if(head != null && head.val == head.next.val){
+            while(head.next != null && head.val == head.next.val){     // 找到第一个非重复元素
+                head = head.next;
+                if(head.next == null){ //找不到第一个重复元素直接返回空值
+                    return null;
+                }
+                if(head.val != head.next.val){    // 防止a→a→b→b时，a→b时判断失误的情况
+                    head = head.next;    
+                }
+            }
+        }
+        res = head;
+        ed = res;    // 更新ed
+        poc = ed.next;    // 接着遍历
+        while(poc != null){
+            while(poc.next != null && poc.val == poc.next.val){
+                if(poc.next.next == null){    // 很重要，当末尾两个元素重复时直接返回
+                    ed.next = null;    // 切断链表
+                    return res;
+                }
+                poc = poc.next;
+                if(poc.next != null && poc.val != poc.next.val){ // 判断与下一个元素是否重复
+                    poc = poc.next;
+                }
+            }
+            ed.next = poc;
+            ed = ed.next;    // 更新ed
+            poc = poc.next;
+        }
+        ed.next = null; // 切断链表
+        return head;
+    }
+}
