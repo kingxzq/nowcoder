@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+void swap(int &m, int &n){ //交换两个整数的函数，用引用
+    int temp = m; //交换两个数
+    m = n;
+    n = temp;
+}
+int main() {
+	int m, n;
+	cin >> m;
+	cin >> n;
+    swap(m, n); //函数交换
+	cout << m << " " << n << endl;
+	return 0;
+}
