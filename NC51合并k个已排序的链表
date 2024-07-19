@@ -1,0 +1,29 @@
+class Solution {
+public:
+    //对两个链表进行合并
+    ListNode* mergeTwoLists(ListNode *a, ListNode *b) {
+        if ((!a)||(!b)) return a? a : b;
+        ListNode head(0), *r=//r是链表插入的尾指针
+        ListNode *aPtr = a, *bPtr = b;
+        while (aPtr && bPtr) {
+            if (aPtr->val < bPtr->val) {//利用尾插法把数值小的插入
+                r->next=aPtr;
+                aPtr=aPtr->next;
+            } else {
+                r->next=bPtr;
+                bPtr=bPtr->next;
+            }
+            r=r->next;
+        }
+        r->next = (aPtr ? aPtr : bPtr);
+        return head.next;
+    }
+    //遍历对第i个链表进行合并
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode *ans = nullptr;
+        for (size_t i = 0; i < lists.size(); ++i) {
+            ans = mergeTwoLists(ans, lists[i]);
+        }
+        return ans;
+    }
+};
