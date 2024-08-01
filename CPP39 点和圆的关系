@@ -1,0 +1,89 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+// 点类
+class Pointer {
+
+    private:
+        int x;  // x 坐标
+        int y;  // y 坐标
+
+    public:
+        void setX(int x) {
+            this->x = x;
+        }
+
+        int getX() {
+            return x;
+        }
+
+        void setY(int y) {
+            this->y = y;
+        }
+
+        int getY() {
+            return y;
+        }
+
+};
+
+// 圆类
+class Circle {
+
+    private:
+        Pointer center; // 圆心
+        int radius; // 半径
+
+    public:
+        void setCenter(int x, int y) {
+            center.setX(x);
+            center.setY(y);
+        }
+
+        void setRadius(int radius) {
+            this->radius = radius;
+        }
+
+        // write your code here......
+        void isPointerInCircle(Pointer p){
+            int x1=p.getX();
+            int y1=p.getY();
+            int x2=center.getX();
+            int y2=center.getY();
+            int dist=(x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
+            if(dist<radius*radius){
+                cout<<"in"<<endl;
+            }
+            else if(dist==radius*radius){
+                cout<<"on"<<endl;
+            }
+            else{
+                cout<<"out"<<endl;
+            }
+        }
+
+};
+
+int main() {
+
+    // 键盘输入点的坐标
+    int x, y;
+    cin >> x;
+    cin >> y;
+
+    // 创建一个点
+    Pointer p;
+    p.setX(x);
+    p.setY(y);
+
+    // 创建一个圆
+    Circle c;
+    c.setCenter(5, 0);
+    c.setRadius(5);
+
+    // 判断点和圆的关系
+    c.isPointerInCircle(p);
+
+    return 0;
+}
