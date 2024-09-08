@@ -1,0 +1,15 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {
+
+	char str[100] = { 0 };
+	cin.getline(str, sizeof(str));
+    set<char> s;
+    for(int i = 0; str[i] != '\0'; i++) //遍历字符串
+        s.insert(str[i]); //将字符加入到set中
+    for(auto iter = s.begin(); iter != s.end(); iter++) //遍历set输出字符
+        cout << *iter;
+	return 0;
+}
