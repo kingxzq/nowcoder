@@ -1,0 +1,41 @@
+import java.util.*;
+
+/*
+ * public class ListNode {
+ *   int val;
+ *   ListNode next = null;
+ *   public ListNode(int val) {
+ *     this.val = val;
+ *   }
+ * }
+ */
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param head ListNode类 
+     * @return ListNode类
+     */
+        public ListNode deleteNodes (ListNode head) {
+		 // 记录temp前驱结点
+        ListNode temp = head;
+		  // cur相当于当前节点
+        ListNode cur = head;
+		  // cur向后走一步，相当于走到第二个结点，而temp相当于在第一个结点
+         cur = cur.next;
+        while(cur.next!=null){
+		  // 判断是否为峰值情况，如果是,直接跳过当前节点，让前驱结点指向当前节点的下一个节点即可
+            if(cur.val>temp.val&&cur.val>cur.next.val){
+                temp.next = cur.next;
+            }
+		  //前驱结点向后走一步
+            temp = cur;
+		  // 当前节点向后走一步
+            cur = cur.next;
+        }
+		  // 返回头结点即可,因为temp和cur都已经进行向后遍历,不能再使用
+        return head;
+    }
+}
