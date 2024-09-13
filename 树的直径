@@ -1,0 +1,53 @@
+import java.util.*;
+/*
+* public class Interval {
+*   int start;
+*   int end;
+* }
+*/
+public class Solution {
+/**
+* 树的直径
+* @param n int整型 树的节点个数
+* @param Tree_edge Interval类一维数组 树的边
+* @param Edge_value int整型一维数组 边的权值
+* @return int整型
+*/
+public int solve (int n, Interval[] Tree_edge, int[] Edge_value) {
+   // write code here
+   int[][] graph = new int[n][n];
+   // 将树的边以及权重转换成无向图
+   for (int i = 0;i < Tree_edge.length;++i){
+       graph[Tree_edge[i].start][Tree_edge[i].end] = Edge_value[i];
+       graph[Tree_edge[i].end][Tree_edge[i].start] = Edge_value[i];
+   }
+   int maxVal = 0;
+   // 计算每个点最长路径
+   for (int i = 0; i < n; ++i){
+       int temp = compute(graph,i,new boolean[n]);
+       maxVal = maxVal > temp ? maxVal : temp;
+   }
+   // 返回最长路径
+   return maxVal;
+}
+// 递归计算每一个点的最长路径
+private int compute(int[][] graph,
+                   int index, boolean[] to){
+   int max = 0;
+   to[index] = true;
+   int temp = 0;
+   for (int i = 0; i < graph.length; ++i){
+       // 判断两点之间是否有路径
+       if (graph[index][i] != 0){
+           // 判断当前点是否已经走过
+           if (!to[i]){
+               to[i] = true;
+               // 计算下一个点的路径
+               temp = compute(graph,i,to)+graph[index][i];
+               max = max > temp ? max : temp;
+           }
+       }
+   }
+   return max;
+}
+}
