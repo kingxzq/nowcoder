@@ -1,0 +1,61 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     *
+     * @param n int 顶点数
+     * @param m int 边数
+     * @param graph int二维数组 一维3个数据，表示顶点到另外一个顶点的边长度是多少​
+     * @return int
+     */
+    int lmin = Integer.MAX_VALUE;
+    public int findShortestPath (int n, int m, int[][] graph) {
+        // write code here
+        int[][] lgraph = new int[n][n];
+        int[] dist = new int[n];
+        int[] visit = new int[n];
+        for (int i = 0; i < n; i++) {
+            dist [i] = Integer.MAX_VALUE;
+        }
+        dist [0] = 0;
+        djstra(n, m, graph, dist, visit);
+        return dist[n - 1];
+    }
+//不断的用到原点最小距离的点，更新和该点相连的所有点的最小距离（floyd算法中不是），我为人人型动态规划
+    public void djstra(int n, int m, int graph[][], int[]dist,
+                       int[] visit) {
+        int mindex = 0;
+        int min = 0;
+        visit[0] = 1;
+        //i初始为零，i<n+1也可以
+        for (int i = 1; i < n; i++) {
+            //寻找这一轮中的最小的dist[k]
+            //初始化
+            for (int k = 0; k < n; k++) {
+                if (visit[k] == 0 && dist[k] < Integer.MAX_VALUE)      {
+                    min = dist[k];
+                    mindex = k;
+                }//符号打错答案会错误
+            }
+            //寻找最小的
+            for (int k = 0; k < n; k++) {
+                if (visit[k] == 0 && dist[k] < min) {
+                    min = dist[k];
+                    mindex = k;
+                }
+            }
+            // System.out.println("dist:" + mindex + ":" + dist[mindex]);
+            visit[mindex] = 1;
+            //每一轮用到原点最小距离的点，更新和该点相连的所有点的最小距离
+            for (int j = 0; j < m; j++) {
+                if (graph[j][0] - 1 == mindex &&
+                        dist[mindex]  + graph[j][2] < dist[graph[j][1] - 1]) {
+                    dist[graph[j][1] - 1] =  dist[mindex]  + graph[j][2];
+                }
+            }
+        }
+    }
+}
