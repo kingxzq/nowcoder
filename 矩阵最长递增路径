@@ -1,0 +1,35 @@
+class Solution {
+public:
+    //记录四个方向
+    int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    int n, m;
+    //深度优先搜索，返回最大单元格数
+    int dfs(vector<vector<int> > &matrix, vector<vector<int> > &dp, int i, int j) {
+        if(dp[i][j] != 0)
+            return dp[i][j];
+        dp[i][j]++;
+        for(int k = 0; k < 4; k++){
+            int nexti = i + dirs[k][0];
+            int nextj = j + dirs[k][1];
+            //判断条件
+            if (nexti >= 0 && nexti < n && nextj >= 0 && nextj < m && matrix[nexti][nextj] > matrix[i][j]) 
+                dp[i][j] = max(dp[i][j], dfs(matrix, dp, nexti, nextj) + 1);
+        }
+        return dp[i][j];
+    }
+    int solve(vector<vector<int> >& matrix) {
+        //矩阵不为空
+        if(matrix.size() == 0 || matrix[0].size() == 0) 
+            return 0;
+        int res = 0;
+        n = matrix.size();
+        m = matrix[0].size();
+        //i，j处的单元格拥有的最长递增路径
+        vector<vector<int> > dp (n, vector <int> (m));  
+        for(int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                //更新最大值
+                res = max(res, dfs(matrix, dp, i, j)); 
+        return res;
+    }
+};
