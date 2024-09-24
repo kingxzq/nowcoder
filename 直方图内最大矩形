@@ -1,0 +1,35 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param heights int整型一维数组 
+ * @return int整型
+ */
+function largestRectangleArea( heights ) {
+    //总宽度
+    let n=heights.length;
+    let res=0;
+    for(let i=0;i<n;i++){
+        let start=-1; //从后往前找到第一个小于当前的高度，记为start
+        for(let j=i-1;j>=0;j--){
+            if(heights[j]<heights[i]){
+                start=j;
+                break;
+            }
+        }
+        let end=n;
+        //从前往后找到第一个小于当前的高度，记为end
+        for(let j=i+1;j<n;j++){
+            if(heights[j]<heights[i]){
+                end=j;
+                break;
+            }
+        }
+        //根据start、end得到以当前高度为高的最大矩形面积，取所有可能的最大值
+        res=Math.max(res,(end-start-1)*heights[i]);
+    }       
+    return res;
+}
+module.exports = {
+    largestRectangleArea : largestRectangleArea
+};
