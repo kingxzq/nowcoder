@@ -1,0 +1,15 @@
+public int[] topKFrequent (int[] planets, int k) {
+        // write code here
+          HashMap<Integer, Integer> map = new HashMap<>();
+        for (int planet : planets)
+            map.put(planet, map.getOrDefault(planet, 0) + 1);
+        PriorityQueue<Map.Entry<Integer,Integer>> sortedVqueue = new PriorityQueue<>((o1, o2) -> o2.getValue() - o1.getValue());
+        PriorityQueue<Map.Entry<Integer,Integer>> sortedKqueue = new PriorityQueue<>((o1, o2) -> o1.getKey() - o2.getKey());
+        sortedVqueue.addAll(map.entrySet());
+        for (int i = 0; i < k; i++)
+            sortedKqueue.add(sortedVqueue.poll());
+        int[] res = new int[sortedKqueue.size()];
+        for (int i = 0; i < k; i++)
+            res[i] = sortedKqueue.poll().getKey();
+        return res;
+    }
