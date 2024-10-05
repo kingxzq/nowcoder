@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> temperatures(vector<int>& dailyTemperatures) {
+        //由于要找某个元素右边最近的比这个元素大的位置,所以可以逆向遍历创建一个单调栈
+         stack<int> stack1;
+         int n =dailyTemperatures.size();
+         vector<int> ans;
+         //逆向遍历创建一个单调栈
+         //只要栈非空并且栈顶的元素比要入栈的元素小，就让其出栈
+         for(int i=n-1;i>=0;i--){
+            while(!stack1.empty()&&dailyTemperatures[stack1.top()]<=dailyTemperatures[i]){
+                stack1.pop();
+            }
+            //如果栈为空，就表明该元素后面不存在比它高的温度,就输出0到答案ans中
+            if(stack1.empty()){
+                ans.push_back(0);
+            }else{
+                //否则，就输出两者之间相差几天，输出到ans中
+                ans.push_back(stack1.top()-i);
+            }
+            //每次记录入栈的元素的位置
+            stack1.push(i);
+            
+         }
+         //将ans进行反转，得到答案
+         reverse(ans.begin(),ans.end());
+         return ans;
+    }
+};
