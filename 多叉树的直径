@@ -1,0 +1,67 @@
+
+/**
+ * struct Interval {
+ *	int start;
+ *	int end;
+ * };
+ */
+
+#include <unordered_set>
+#include <vector>
+class Solution {
+public:
+    /**
+     * 树的直径
+     * @param n int整型 树的节点个数
+     * @param Tree_edge Interval类vector 树的边
+     * @param Edge_value int整型vector 边的权值
+     * @return int整型
+     */
+    int maxdiameters = 0;
+    unordered_map<int,vector<pair<int,int>>> nodeMap;
+    vector<int> maxx,min;
+    int solve(int n, vector<Interval>& Tree_edge, vector<int>& Edge_value) {
+        // write code here
+        if(n == 0) return 0;
+        if(n == 2) return Edge_value[0];
+
+        maxx = vector<int>(n+1,0);
+        min = vector<int>(n+1,0);
+        for(int i = 0;i < Tree_edge.size();i++){
+            int a = Tree_edge[i].start,b = Tree_edge[i].end;
+            // if(nodeMap.find(a) == nodeMap.end()){
+            //     nodeMap[a] = {};
+            // }else if(nodeMap.find(b) == nodeMap.end()){
+            //     nodeMap[b] = {};
+            // }
+            nodeMap[a].push_back({b,Edge_value[i]});
+            nodeMap[b].push_back({a,Edge_value[i]});
+        }
+
+        maxroute(0,-1);
+        // maxroute(1,0);
+        return maxdiameters;
+    }
+
+    void maxroute(int now,int from){
+        // if(visited.count(root)) return 0;
+        // visited.insert(root);
+        
+        maxx[now] = 0,min[now] = 0;
+
+        for(auto [to,v]:nodeMap[now]){
+            if(to == from) continue;
+            maxroute(to,now);
+            int vs = maxx[to] + v;
+            if(vs >= maxx[now]){
+                min[now] = maxx[now];
+                maxx[now] = vs;
+            }else if(vs > min[now]){
+                min[now] = vs;
+            }
+        }
+        
+        maxdiameters = max(maxx[now]+min[now],maxdiameters);
+
+    }
+};
