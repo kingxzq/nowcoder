@@ -1,0 +1,30 @@
+#include <unordered_map>
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param nums int整型vector 
+     * @return int整型
+     */
+    int singleNumber(vector<int>& nums) {
+        // write code here
+        map<int, int> m;
+        for (int i = 0; i < nums.size(); i++) {
+            if(m.find(nums[i]) != m.end()){//遇到重复的就去除
+                m.erase(nums[i]);
+            }else {//遇到非重复的就记录次数为1
+                m[nums[i]] = 1;
+            }
+        }
+
+        for (auto it = m.begin(); it != m.end(); it++) {
+            if (it->second == 1) {
+                return it->first;
+                break;
+            }
+        }
+        return 1;
+    }
+};
