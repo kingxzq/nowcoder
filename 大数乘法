@@ -1,0 +1,30 @@
+class Solution {
+public:
+    /**
+     *代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * @param s string字符串 第一个整数
+     * @param t string字符串 第二个整数
+     * @return string字符串
+     */
+    string solve(string s, string t) {
+        // write code here
+        if(s.empty() == true || t.size()== true)
+            return "0";
+        int len1 = s.size();
+        int len2 = t.size();
+        string res(len1 + len2,'0');//设置初始变量"0000"
+        for(int i = len1 - 1; i >= 0; i--){//从最后一位开始乘
+            for(int j = len2 - 1; j >= 0; j--){
+                int temp = (s[i] - '0') * (t[j] - '0') + (res[i+j+1] - '0');//计算两个数乘之后加进位的运算
+                res[i+j+1] = temp % 10 + '0';//对10取余
+                res[i+j] = res[i+j] + temp/10;//进位
+            }
+        }
+        for(int i = 0;i < res.size();i++){ 
+            if(res[i] != '0') 
+                return res.substr(i);//从指定位置开始，并具有指定的长度。 
+        } 
+    return res; 
+    } 
+};
