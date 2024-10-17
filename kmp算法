@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int kmp(string S, string T) {
+        int i=0,j=0,ans=0;
+        while(i<T.size()){
+            if(T[i]==S[j]){//两串对应位相等，接着比较下一位 
+                i++;j++;
+            }else{//不相等，令模式串回到上一次开始匹配位置的下一位，而文本串从头开始比较 
+                i=i-j+1;
+                j=0;
+            }
+            if(j==S.size())ans++;//遍历完一遍模式串，令出现次数加一
+        }
+        return ans;//返回出现次数 
+    }
+};
