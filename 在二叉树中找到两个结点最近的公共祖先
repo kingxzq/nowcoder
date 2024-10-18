@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool find = false; //标记是否找到了
+
+    void dfs(vector<int>& load, TreeNode* root, int o) {
+        if(find || root == nullptr) return; //已经找到或者到达空节点
+        load.push_back(root->val); //加入数组
+        if(root->val == o) {
+            find = true;
+            return;
+        }
+        dfs(load, root->left, o);
+        dfs(load, root->right, o);
+        if(find) { //防止将节点去除
+            return;
+        }
+        load.pop_back(); //不在这条路径，去除节点
+    }
+
+    int lowestCommonAncestor(TreeNode* root, int o1, int o2) {
+        vector<int> load1, load2;
+        dfs(load1, root, o1); //找到 root到o1路径
+        find = false; //重置标记
+        dfs(load2, root, o2); //找到 root到o2路径
+        int leng = min(load1.size(), load2.size());
+        //寻找最后一个相等节点
+        for(int i = 1; i < leng; ++i) {
+            if(load1[i] != load2[i]) {
+                return load1[i - 1]; 
+            }
+        }
+        return load1[leng - 1];
+    }
+};
