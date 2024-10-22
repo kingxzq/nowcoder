@@ -1,0 +1,45 @@
+class Solution {
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param meetings int整型vector<vector<>> 
+     * @return int整型
+     */
+    // 暴力: 返回最大会议数
+    int process(vector<vector<int> >& meetings, int done, int timeLine) {
+        if(meetings.size()==0) {
+            return done;
+        }
+        // 剩下会议
+        int maxV = done;
+        for(int i=0; i<meetings.size(); i++) {
+            // 开始时间晚
+            if(meetings[i][0]>=timeLine) {
+                vector<vector<int> > next = copybutExcept(meetings, i);
+                maxV = max(maxV, process(next, done+1, meetings[i][1]));
+            }
+        }
+        return maxV;
+    }
+
+    vector<vector<int> > copybutExcept(vector<vector<int> > & meetings, int i) {
+        vector<vector<int> > Next(meetings.size()-1);
+        int index = 0;
+        for(int k=0; k<meetings.size(); k++) {
+            if(k!=i) {
+                Next[index++] = meetings[k];
+            }
+        }
+        return Next;
+    }
+
+    int attendmeetings(vector<vector<int> >& meetings) {
+        // write code here
+        if(meetings.size()==0) {
+            return 0;
+        }
+        return process(meetings, 0, 0);
+    }
+};
