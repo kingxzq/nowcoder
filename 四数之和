@@ -1,0 +1,92 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * 思路：先求两数之和，并用map就住他们在nums中位置，最后用目标值减去第一个两数之和，看map是否存在，存在的话再看，map中保存的位置是否与第一个两数之和中的数的位置相同，不同的话，则满足条件
+     *
+     * @param nums int整型ArrayList
+     * @param target int整型
+     * @return int整型ArrayList<ArrayList<>>
+     */
+    public ArrayList<ArrayList<Integer>> fournumber (ArrayList<Integer> nums,
+            int target) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        // 第一步得到所有的两数之和
+        List<Integer> values = new ArrayList<>();
+        List<String> indexs = new ArrayList<>();
+        Map<Integer, List<String>> map = new HashMap<>();
+        for(int i = 0; i < nums.size(); i++) {
+            // 得到第一个数
+            int num1 = nums.get(i);
+            for(int j = i + 1; j < nums.size(); j++) {
+                // 得到第二个数
+                int num2 = nums.get(j);
+                int sum = num1 + num2;
+                values.add(sum);
+                // 对num1和num2排下序
+                String key = null;
+                int min = Math.min(num1, num2);
+                if(min == num1) {
+                    key = i + "," + j;
+                }else {
+                    key = j + "," + i;
+                }
+                
+                indexs.add(key);
+                if(map.get(sum) != null) {
+                    map.get(sum).add(key);
+                }else {
+                    List<String> idx = new ArrayList<>();
+                    idx.add(key);
+                    map.put(sum, idx);
+                }
+            }
+        }
+        Set<String> set = new HashSet<>();
+        // 再次遍历，看是否有符合的两数之和=target
+        for(int i = 0; i < values.size(); i++) {
+            int num1 = values.get(i);
+            String index1 = indexs.get(i);
+            String[] arr1 = index1.split(",");
+            
+            Integer num2 = target - num1;
+            if(map.get(num2) != null) {
+                // 找另外一个两数之和
+                String[] arr2 = null;
+                for(String index2 : map.get(num2)) {
+                    // 在看这个两数之和是否存在和num1相同的数字位置
+                    arr2 = index2.split(",");
+                    if(arr1[0].equals(arr2[0]) || arr1[0].equals(arr2[1]) 
+                        || arr1[1].equals(arr2[0]) || arr1[1].equals(arr2[1]) ) {
+                        // 存在相同位置的数了
+                        arr2 = null;
+                        continue;
+                    }else {
+                        // 都是位置不一样的数，且符合目标值，则停止遍历
+                        break;
+                    }
+                }
+                if(arr2 != null) {
+                    ArrayList<Integer> item = new ArrayList<>();
+                    item.add(nums.get(Integer.parseInt(arr1[0])));
+                    item.add(nums.get(Integer.parseInt(arr1[1])));
+                    item.add(nums.get(Integer.parseInt(arr2[0])));
+                    item.add(nums.get(Integer.parseInt(arr2[1])));
+                    // 做下排序
+                    item.sort((i1, i2) -> i1.compareTo(i2));
+                    String key = item.get(0)+","+item.get(1)+","+item.get(2)+","+item.get(3);
+                    if(!set.contains(key)) {
+                        set.add(key);
+                        list.add(item);
+                    }
+                }
+                
+            }
+        }
+        
+        return list;
+
+    }
+}
