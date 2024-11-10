@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool IsContinuous( vector<int> numbers ) {
+        sort(numbers.begin(), numbers.end());
+        int zero_num = 0;//统计大小王数量
+        int i = 0;
+        while (numbers[i] == 0)zero_num++,i++;
+        int interrapt = 0;//记录五张牌中最大值max到最小值min的距离
+        for (; i < numbers.size()-1; ++i) {
+            if (numbers[i] == numbers[i + 1])return false;//出现相同的扑克牌
+            interrapt += numbers[i + 1] - numbers[i] - 1;//计算距离
+        }
+        if (zero_num >= interrapt) return true;
+        return false;
+    }
+};
