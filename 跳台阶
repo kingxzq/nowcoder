@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int jumpFloor(int number) {
+        int dp[1005];
+        dp[1]=1;//跳台阶为1，2的方案数字 很容易想出来了
+        dp[2]=2;
+        for(int i=3;i<=number;i++){
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        return dp[number];
+    }
+};
