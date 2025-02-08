@@ -1,0 +1,1 @@
+select id, LENGTH(string) - LENGTH(replace(string, ',','')) cnt
